@@ -2156,6 +2156,13 @@ impl State {
                     .skip(1)
                     .next()
                     .cloned();
+
+                let next_output = if next_output.is_some() {
+                    next_output
+                } else {
+                    shell.outputs().next().cloned()
+                };
+
                 if let Some(next_output) = next_output {
                     let res = shell.move_current_window(
                         seat,
@@ -2195,6 +2202,13 @@ impl State {
                     .skip(1)
                     .next()
                     .cloned();
+
+                let prev_output = if prev_output.is_some() {
+                    prev_output
+                } else {
+                    shell.outputs().rev().next().cloned()
+                };
+
                 if let Some(prev_output) = prev_output {
                     let res = shell.move_current_window(
                         seat,
